@@ -52,11 +52,16 @@ jobs:
       
     - name: gettag
       id: version
-      uses: ashley-taylor/read-json-property-action@v1.0
+      uses: ashley-taylor/read-json-property-action@v1.1
       with:
           path: D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\UAC-Control.deps.json
-          property: version
+          property: targets
           
+    - name: echotag
+      id: tag
+      run: |
+        echo ${{steps.version.outputs.value}} 
+      
     # Upload bin directory
     - name: Upload bin directory
       uses: actions/upload-artifact@main
@@ -65,14 +70,9 @@ jobs:
         name: UAC-Control
         path: D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\
         
-    - name: Upload GitHub Release
-      id: create_release
-      uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "v${{steps.version.outputs.value}}"
-        prerelease: false
-        title: "Release v${{steps.version.outputs.value}}"
         files: |
-           D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\*
-
+          D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\*
