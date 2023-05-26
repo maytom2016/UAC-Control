@@ -5,8 +5,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-    - 'UAC-Control\UAC-Control.sln'
-    - 'UAC-Control\UAC-Control\UAC-Control.vbproj'
+    - 'UAC-Control.sln'
 
 env:
   DOTNET_VERSION: '6.0.401' # The .NET SDK version to use
