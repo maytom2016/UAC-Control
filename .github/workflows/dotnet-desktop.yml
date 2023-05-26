@@ -57,10 +57,10 @@ jobs:
           path: D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\UAC-Control.deps.json
           property: targets
           
-    - name: echotag
-      id: tag
-      run: |
-        echo ${{steps.version.outputs.value}} 
+#    - name: echotag
+#      id: tag
+#      run: |
+#        echo ${{steps.version.outputs.value}} 
       
     # Upload bin directory
     - name: Upload bin directory
