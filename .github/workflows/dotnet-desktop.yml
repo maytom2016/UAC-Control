@@ -57,11 +57,13 @@ jobs:
           path: D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\UAC-Control.deps.json
           property: targets
           
-#    - name: echotag
-#      id: tag
-#      run: |
-#        echo ${{steps.version.outputs.value}} 
-      
+    - name: Zipfile
+      id: tag
+      run: |
+        Compress-Archive -Path D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows -DestinationPath D:\a\UAC-Control\UAC-Control.zip
+        echo ${{steps.version.outputs.value}} -match 'UAC-Control/.*(?=\")' 
+        $matches>> $GITHUB_OUTPUT
+        
     # Upload bin directory
     - name: Upload bin directory
       uses: actions/upload-artifact@main
@@ -74,6 +76,6 @@ jobs:
       uses: softprops/action-gh-release@v1
 #      if: startsWith(github.ref, 'refs/tags/')
       with:
-        tag_name: ${{steps.version.outputs.value}}
+        tag_name: ${{Zipfile.tag.outputs.value}}
         files: |
-          D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\*
+          D:\a\UAC-Control\UAC-Control.zip
