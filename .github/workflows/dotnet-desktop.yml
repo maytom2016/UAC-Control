@@ -1,5 +1,5 @@
 permissions:
-  contents: write
+  contents: read|write
 name: .NET Core Desktop
 on:
   repository_dispatch:
