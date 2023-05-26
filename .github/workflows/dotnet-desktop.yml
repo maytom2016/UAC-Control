@@ -53,11 +53,7 @@ jobs:
     - name: Zipfile
       id: Zip
       run: Compress-Archive -Path D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows -DestinationPath D:\a\UAC-Control\UAC-Control.zip
-    
-    - name: Get version
-      id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-        
+  
     # Upload bin directory
     - name: Upload bin directory
       uses: actions/upload-artifact@main
@@ -70,6 +66,6 @@ jobs:
       uses: softprops/action-gh-release@v1
 #      if: startsWith(github.ref, 'refs/tags/')
       with:
-        tag_name: ${{ steps.get_version.outputs.VERSION }}
+        tag_name: v1.0.0
         files: |
           D:\a\UAC-Control\UAC-Control.zip
