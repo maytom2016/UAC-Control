@@ -66,12 +66,25 @@ jobs:
         name: UAC-Control
         path: D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\
         
+    - name: Gettagsfromjson1
+      id: version
+      uses: ashley-taylor/read-json-property-action@v1.1
+      with:
+          path: D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\UAC-Control.deps.json
+          property: targets
+          
+    - name: Gettagsfromjson2
+      id: tag
+      run: |
+        '${{ steps.version.outputs.value }}' -match 'UAC-Control/\d{1,3}.\d{1,3}.\d{1,3}' 
+        echo "value=$matches.0" >> $env:GITHUB_OUTPUT
+        
     - name: Release
       uses: softprops/action-gh-release@v1
 #      if: startsWith(github.ref, 'refs/tags/')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.event.inputs.tag_name }}
+        tag_name: ${{ steps.tag.outputs.value }}
         files: |
           D:/a/UAC-Control/UAC-Control.zip
