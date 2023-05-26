@@ -70,9 +70,9 @@ jobs:
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "${{ env.RELEASE_VERSION }}"
+        automatic_release_tag: "v${{steps.version.outputs.value}}"
         prerelease: false
-        title: "Release ${{ env.RELEASE_VERSION }}"
+        title: "Release v${{steps.version.outputs.value}}"
         files: |
            D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\*
 
