@@ -76,6 +76,6 @@ jobs:
       uses: softprops/action-gh-release@v1
 #      if: startsWith(github.ref, 'refs/tags/')
       with:
-        tag_name: ${{Zipfile.tag.outputs.value}}
+        tag_name: ${{steps.Zipfile.tag.outputs.value}}
         files: |
           D:\a\UAC-Control\UAC-Control.zip
