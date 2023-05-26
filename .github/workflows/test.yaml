@@ -41,5 +41,5 @@ jobs:
     - name: Maketags
       id: tag
       run: |
-        ${{steps.version.outputs.value}} -match 'UAC-Control/\d.\d.\d' 
+        '${{steps.version.outputs.value}}' -match 'UAC-Control/\d.\d.\d' 
         $matches>> $GITHUB_OUTPUT
