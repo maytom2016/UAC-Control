@@ -70,4 +70,4 @@ jobs:
       with:
         tag_name: v1.0.0
         files: |
-          D:\a\UAC-Control\UAC-Control.zip
+          D:/a/UAC-Control/UAC-Control.zip
