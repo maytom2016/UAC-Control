@@ -52,7 +52,9 @@ jobs:
       
     - name: Zipfile
       id: Zip
-      run: Compress-Archive -Path D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows -DestinationPath D:\a\UAC-Control\UAC-Control.zip
+      run: |
+        Compress-Archive -Path D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows -DestinationPath D:\a\UAC-Control\UAC-Control.zip
+        ls D:\a\UAC-Control\
   
     # Upload bin directory
     - name: Upload bin directory
