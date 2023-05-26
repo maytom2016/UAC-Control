@@ -45,7 +45,9 @@ jobs:
         echo $matches
         $a=$matches.0
         echo $a
-        echo "test=$a" >> "$GITHUB_OUTPUT"
+        echo "::set-output name=test::$a"
+#        echo "test=$a" >> "$GITHUB_OUTPUT"
+       
     - name: echoversion
       id: echo
       run: |
