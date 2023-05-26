@@ -56,4 +56,4 @@ jobs:
       if: ${{ success() }}
       with:
         name: UAC-Control
-        path: ./bin/Release/
+        path: D:\a\UAC-Control\UAC-Control\UAC-Control\
