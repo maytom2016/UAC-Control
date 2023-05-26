@@ -74,5 +74,6 @@ jobs:
       uses: softprops/action-gh-release@v1
 #      if: startsWith(github.ref, 'refs/tags/')
       with:
+        tag_name: ${{steps.version.outputs.value}}
         files: |
           D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\*
