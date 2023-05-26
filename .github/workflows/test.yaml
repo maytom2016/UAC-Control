@@ -1,6 +1,6 @@
 permissions:
   contents: write
-name: .NET Core Desktop
+name: test
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -23,6 +23,7 @@ jobs:
     - name: gettag
       id: lspath
       run: |
+        cd ..
         ls
         pwd
       
