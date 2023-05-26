@@ -72,7 +72,7 @@ jobs:
         
     - name: Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+#      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
           D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows\*
