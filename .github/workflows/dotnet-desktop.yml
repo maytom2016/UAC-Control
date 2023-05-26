@@ -33,6 +33,17 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
+    # Setup NuGet
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.NuGetAPIKey }}
+        nuget-version: '5.x'
+
+    # NuGet restore
+    - name: NuGet restore
+      run: nuget restore
+      
     # Build
     - name: Build the solution
       run: msbuild /p:Configuration=$env:Configuration
