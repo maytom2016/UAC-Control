@@ -20,10 +20,14 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: gettag
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        
+    - name: lspath
       id: lspath
       run: |
-        cd ..
         ls
         pwd
       
