@@ -61,7 +61,7 @@ jobs:
       id: tag
       run: |
         Compress-Archive -Path D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows -DestinationPath D:\a\UAC-Control\UAC-Control.zip
-        echo ${{steps.version.outputs.value}} -match 'UAC-Control/.*(?=\")' 
+        ${{steps.version.outputs.value}} -match 'UAC-Control/.*(?=\")' 
         $matches>> $GITHUB_OUTPUT
         
     # Upload bin directory
