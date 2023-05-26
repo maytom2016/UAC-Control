@@ -58,11 +58,13 @@ jobs:
           property: targets
           
     - name: Zipfile
+      id: Zip
+      run: Compress-Archive -Path D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows -DestinationPath D:\a\UAC-Control\UAC-Control.zip
+    
+    - name: Maketags
       id: tag
-      run: |
-        Compress-Archive -Path D:\a\UAC-Control\UAC-Control\UAC-Control\bin\Release\net6.0-windows -DestinationPath D:\a\UAC-Control\UAC-Control.zip
-        ${{steps.version.outputs.value}} -match 'UAC-Control/.*(?=\")' 
-        $matches>> $GITHUB_OUTPUT
+      run: ${{steps.version.outputs.value}} -match 'UAC-Control/.*(?=\")' 
+       $matches>> $GITHUB_OUTPUT
         
     # Upload bin directory
     - name: Upload bin directory
@@ -76,6 +78,6 @@ jobs:
       uses: softprops/action-gh-release@v1
 #      if: startsWith(github.ref, 'refs/tags/')
       with:
-        tag_name: ${{steps.Zipfile.tag.outputs.value}}
+        tag_name: ${{steps.Maketags.tag.outputs.value}}
         files: |
           D:\a\UAC-Control\UAC-Control.zip
