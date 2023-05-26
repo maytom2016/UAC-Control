@@ -43,8 +43,9 @@ jobs:
       run: |
         '${{steps.version.outputs.value}}' -match 'UAC-Control/\d{1,3}.\d{1,3}.\d{1,3}' 
         echo $matches
-        echo $matches.0
-        echo "{test}={$($matches.0)}" >> "$GITHUB_OUTPUT"
+        $a=$matches.0
+        echo $a
+        echo "{test}={$a}" >> "$GITHUB_OUTPUT"
     - name: echoversion
       id: echo
       run: |
